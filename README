@@ -1,0 +1,34 @@
+Simple mail merging
+
+mailmerge.pl template data [subject]
+
+Takes a template file and a data file containing a list
+of recipients, one per line. The fields are tab separated
+
+user1@host	field1	field2	field3	...
+user2@host	field1	field2	field3	...
+
+The template file can use '$1', '$2', ... which will be replaced
+with the data in field1, fiel2, ...
+
+e.g.
+------------------
+Dear $1,
+
+Welcome to York! To log in, your account is:
+
+Username: $2
+Password: $3
+
+Regards
+
+Admin
+-------------------
+
+The subject argument is optional, but can also use $1,$2 etc. 
+The difference is that these need to be escaped e.g.
+
+mailmerge.pl template data "account for \$1"
+
+note the extra '\'.
+
